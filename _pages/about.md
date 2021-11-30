@@ -6,7 +6,7 @@ description: <a href="#">Mayo Clinic</a>. Wang.Peilong@mayo.edu.
 
 profile:
   align: right
-  image: #prof_pic.jpg
+  image: prof_pic.jpg
   address: >
     <!-- <p>555 your office number</p> -->
     <!-- <p>123 your address street</p> -->
