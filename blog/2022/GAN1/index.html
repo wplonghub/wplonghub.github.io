@@ -12,7 +12,7 @@
   Peilong  Wang
 
 
-  | blog
+  | GAN reading 1
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="https://wplonghub.github.io/blog/">
+<link rel="canonical" href="https://wplonghub.github.io/blog/2022/GAN1/">
 
 
 <!-- Dark Mode -->
@@ -84,14 +84,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -159,8 +155,8 @@
           
           
           
-            <div class = "toggle-container">
-              <a id = "light-toggle">
+            <div class="toggle-container">
+              <a id="light-toggle">
                   <i class="fas fa-moon"></i>
                   <i class="fas fa-sun"></i>
               </a>
@@ -177,114 +173,113 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
-
-  <div class="header-bar">
-    <h1>Peilong's blog</h1>
-    <h2>Welcome to my blog</h2>
-  </div>
+      
 
 
-  <ul class="post-list">
-    
 
-    
-    
-    
-    
 
-    <li>
-      <h3><a class="post-title" href="/blog/2022/Venv/">Python virtual environment</a>
-      </h3>
-      <p>use venv to create virtual environment</p>
-      <p class="post-meta"> 1 min read &nbsp; &middot; &nbsp;
-        March 20, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
 
-          
+<div class="post">
 
-          
+  <header class="post-header">
+    <h1 class="post-title">GAN reading 1</h1>
+    <p class="post-meta">March 18, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+      
+
+      
+
     </p>
-    </li>
+  </header>
 
-    
+  <article class="post-content">
+    <h2 id="gan-reading-1">GAN reading 1:</h2>
 
-    
-    
-    
-    
+<p>https://machinelearningmastery.com/practical-guide-to-gan-failure-modes/</p>
 
-    <li>
-      <h3><a class="post-title" href="/blog/2022/Emacs/">Emacs</a>
-      </h3>
-      <p>Common emacs commands</p>
-      <p class="post-meta"> 1 min read &nbsp; &middot; &nbsp;
-        March 20, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+<h3 id="part-1-training-a-stable-gan">part 1: training a stable GAN</h3>
 
-          
+<p>Training procedure:</p>
 
-          
-    </p>
-    </li>
+<ol>
+  <li>use the real image to train the discriminator</li>
+  <li>generate the fake image and use the fake image to train the discriminator
+    <ul>
+      <li>first, generate latent points (random vector/tensor)</li>
+      <li>second, give latent points to the generator to generate the fake image</li>
+      <li>third, use the fake image to train the discriminator</li>
+    </ul>
+  </li>
+  <li>generate latent points and labels</li>
+  <li>use latent points and labels to train the GAN model and get the loss
+    <ul>
+      <li>in the GAN model training process, discriminator training is disabled; so only the generator is trained</li>
+      <li>the output from the GAN model (Generator + Discriminator(training disabled)) is the GAN loss</li>
+    </ul>
+  </li>
+  <li>GAN model performance is evaluated and saved
+    <ul>
+      <li>generate latent points and give them to the generator to generate the fake image</li>
+      <li>the fake image is saved for evaluation and GAN model weights are saved</li>
+    </ul>
+  </li>
+</ol>
 
-    
+<p>A stable GAN will have a discriminator loss around 0.5, typically between 0.5 and maybe as high as 0.7 or 0.8. The generator loss is typically higher and may hover around 1.0, 1.5, 2.0, or even higher.</p>
 
-    
-    
-    
-    
+<p>The accuracy of the discriminator on both real and generated (fake) images will not be 50%, but should typically hover around 70% to 80%.</p>
 
-    <li>
-      <h3><a class="post-title" href="/blog/2022/GAN1/">GAN reading 1</a>
-      </h3>
-      <p>stable GAN, mode collapse and convergence failure</p>
-      <p class="post-meta"> 3 min read &nbsp; &middot; &nbsp;
-        March 18, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+<p>The quality generated can and does vary across the run, even after the training process becomes stable.</p>
 
-          
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        
 
-          
-    </p>
-    </li>
 
-    
-  </ul>
+<img class="img-fluid rounded z-depth-1" src="/assets/resized/The-basic-structure-of-the-generative-adversarial-network-GAN-model-800x310.jpg" srcset="    /assets/resized/The-basic-structure-of-the-generative-adversarial-network-GAN-model-480x186.jpg 480w,    /assets/resized/The-basic-structure-of-the-generative-adversarial-network-GAN-model-800x310.jpg 800w,/ assets/img/The-basic-structure-of-the-generative-adversarial-network-GAN-model.jpg 850w">
+
+    </div>
+</div>
+<div class="caption">
+The basic structure of the generative adversarial network GAN model
+</div>
+
+<h5 id="-what-is-latent-space">* what is latent space?</h5>
+<p>Reading: https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d</p>
+
+<h3 id="part-2-identifying-a-mode-collapse-in-gan">part 2: identifying a mode collapse in GAN</h3>
+<p>With a GAN generator model, a mode failure means that the vast number of points in the input latent space (e.g. hypersphere of 100 dimensions in many cases) result in one or a small subset of generated images.</p>
+
+<p>(* “mode” refers to an output distribution.)</p>
+
+<p>signs of mode collapse:</p>
+<ol>
+  <li>generated images showing a low diversity</li>
+  <li>loss plot for generator (and probably the discriminator) showing oscillations over time</li>
+</ol>
+
+<p>ways to solve:</p>
+<ol>
+  <li>restrict the size of the latent dimensions directly (forcing the model to only generate a small subset of plausible outputs)</li>
+  <li>check if the data size is too small</li>
+</ol>
+
+<h3 id="part-3-identifying-convergence-failure-in-gan">part 3: identifying convergence failure in GAN</h3>
+<p>In the case of a GAN, a failure to converge refers to not finding an equilibrium between the discriminator and the generator. The likely way that you will identify this type of failure is that the loss for the discriminator has gone to zero or close to zero (The loss for the generator is expected to either decrease to zero or continually decrease during training). This type of loss is most commonly caused by the generator outputting garbage images that the discriminator can easily identify.</p>
+
+<p>ways to deal with convergence failure:</p>
+<ol>
+  <li>changing one or both models to have insufficient capacity</li>
+  <li>changing the Adam optimization algorithm to be too aggressive</li>
+  <li>using very large or very small kernel sizes in the models</li>
+  <li>or the data problem</li>
+</ol>
+
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="blog - page 4">4</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 
@@ -295,8 +290,8 @@
     
 <footer class="fixed-bottom">
   <div class="container mt-0">
-    &copy; Copyright 2022 Peilong  Wang.
-    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+    © Copyright 2022 Peilong  Wang.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
 
     
     
